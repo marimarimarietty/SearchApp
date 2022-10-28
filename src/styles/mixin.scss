@@ -1,5 +1,5 @@
 // mixin
-@use "@variables" as var;
+@use "@styles/variables.scss" as var;
 
 // mediaquery
 @mixin mq($breakpoint: sp) {

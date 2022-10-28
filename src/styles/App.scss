@@ -1,5 +1,5 @@
-@use "@variables" as var;
-@use "@mixin" as mi;
+@use "@styles/variables.scss" as var;
+@use "@styles/mixin.scss" as mi;
 
 .App {
   text-align: center;
