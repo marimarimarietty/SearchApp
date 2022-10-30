@@ -1,11 +1,12 @@
 import React from 'react';
-import './styles/App.scss';
 import Header from '@/components/organisms/Header';
+import Search from '@/components/organisms/Search';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Header />
+      <Search />
     </div>
   );
 }
