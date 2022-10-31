@@ -41,6 +41,7 @@
     font-weight: bold;
     font-size: 20px;
     padding: 0;
+    cursor: pointer;
 
     @include mi.mq {
       margin-top: 10px;
