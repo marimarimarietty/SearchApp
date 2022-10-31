@@ -20,4 +20,65 @@
       width: 100%;
     }
   }
+
+  &__total {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+}
+
+.item {
+  padding: 10px 0;
+  border-bottom: 1px solid var.$themeOrange;
+
+  @include mi.mq {
+    text-align: left;
+  }
+
+  &__name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 10px;
+  }
+
+  &__desc {
+    margin: 0 0 10px;
+  }
+
+  &__detail {
+    display: flex;
+    align-items: center;
+  }
+
+  &__star {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  &__starText {
+    margin: 0 0 0 5px;
+  }
+
+  &__fork {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-left: 15px;
+  }
+
+  &__forkText {
+    margin: 0 0 0 5px;
+  }
+
+  &__language {
+    margin-left: 15px;
+    font-size: 14px;
+  }
+
+  &__updated {
+    margin-left: 15px;
+    font-size: 14px;
+  }
 }
