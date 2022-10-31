@@ -1,0 +1,23 @@
+@use "@styles/variables.scss" as var;
+@use "@styles/mixin.scss" as mi;
+
+.result {
+  display: flex;
+  justify-content: center;
+  min-width: var.$contentWidthPc;
+  padding: 40px 40px 0;
+
+  @include mi.mq {
+    min-width: auto;
+    padding: 20px 10px;
+    text-align: center;
+  }
+
+  &__inner {
+    width: var.$contentWidthPc;
+
+    @include mi.mq {
+      width: 100%;
+    }
+  }
+}
