@@ -1,17 +1,22 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import styles from '@styles/components/organisms/Search.module.scss';
-import { resultData } from '@/App';
+import SearchResult from '@/components/organisms/SearchResult';
+import Pagenation from '@/components/organisms/Pagenation';
 
-type Props = {
-  setData: React.Dispatch<React.SetStateAction<resultData | undefined>>
+export type resultData = {
+  totalCount: number,
+  items: any,
 }
 
-export default function Search({setData}: Props) {
+export default function Search() {
   const [term, setTerm] = useState<string | "">("");
+  const [data, setData] = useState<resultData>();
+  const [page, setPage] = useState<number>(1);
 
-  const fetchData = useCallback(({ input }: any) => {
-    const queryTerm = `q=` + encodeURIComponent(input);
-    const queryString = `${queryTerm}&sort=stars&order=desc`;
+  const fetchData = useCallback(({ term }: any) => {
+    const queryTerm = `q=` + encodeURIComponent(term);
+    const queryPage = `&page=${page || 1}`;
+    const queryString = `${queryTerm}&sort=stars&order=desc${queryPage}`;
     let url = `https://api.github.com/search/repositories?${queryString}`;
 
     fetch(url).then((res) => res.json()).then((data) => {
@@ -23,7 +28,7 @@ export default function Search({setData}: Props) {
         console.log(error);
     })
   },
-  []
+  [page]
   );
 
   const handleInput = (e: any) => {
@@ -37,15 +42,26 @@ export default function Search({setData}: Props) {
   };
 
   const handleSubmit = () => {
-    fetchData(term);
+    setPage(1);
+    fetchData({term: term});
   };
 
+  useEffect(() => {
+    if (term) {
+      fetchData({ term: term });
+    }
+  }, [page, fetchData]);
+
   return (
-    <div className={styles.search}>
-      <div className={styles.search__inner}>
-        <input type="text" id="search_text" className={styles.search__input} value={term || ""} onChange={handleInput} onKeyPress={handleKeyPress}/>
-        <button title={"search"} className={styles.search__button} onClick={handleKeyPress}>SEARCH</button>
+    <>
+      <div className={styles.search}>
+        <div className={styles.search__inner}>
+          <input type="text" id="search_text" className={styles.search__input} value={term || ""} onChange={handleInput} onKeyPress={handleKeyPress}/>
+          <button title={"search"} className={styles.search__button} onClick={handleKeyPress}>SEARCH</button>
+        </div>
       </div>
-    </div>
+      {data ? <Pagenation page={page} total={data.totalCount} setPage={setPage} /> : ""}
+      {data ? <SearchResult data={data} /> : ""}
+    </>
   )
 }
