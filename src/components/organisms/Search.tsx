@@ -5,15 +5,19 @@ import Pagenation from '@/components/organisms/Pagenation';
 
 export type resultData = {
   totalCount: number,
-  items: any,
+  items: [],
+}
+
+type fetchDataProps = {
+  term: string,
 }
 
 export default function Search() {
-  const [term, setTerm] = useState<string | "">("");
+  const [term, setTerm] = useState<string>("");
   const [data, setData] = useState<resultData>();
   const [page, setPage] = useState<number>(1);
 
-  const fetchData = useCallback(({ term }: any) => {
+  const fetchData = useCallback(({ term }: fetchDataProps) => {
     const queryTerm = `q=` + encodeURIComponent(term);
     const queryPage = `&page=${page || 1}`;
     const queryString = `${queryTerm}&sort=stars&order=desc${queryPage}`;
@@ -31,7 +35,7 @@ export default function Search() {
   [page]
   );
 
-  const handleInput = (e: any) => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTerm(e.target.value);
   }
 

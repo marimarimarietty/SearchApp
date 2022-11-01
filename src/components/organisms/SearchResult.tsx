@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from '@styles/components/organisms/SearchResult.module.scss';
 import { GoStar as StarIcon, GoRepoForked as ForkIcon } from "react-icons/go";
+import { resultData } from '@/components/organisms/Search';
 
 type Props = {
-  data: any;
+  data: resultData;
 }
 
 export default function SearchResult({data}: Props) {
