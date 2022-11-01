@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import styles from '@styles/components/organisms/SearchResult.module.scss';
 import { GoStar as StarIcon, GoRepoForked as ForkIcon } from "react-icons/go";
 
@@ -13,6 +13,7 @@ export default function SearchResult({data}: Props) {
       <div className={styles.result__inner}>
         <div className={styles.result__total}>{data?.totalCount} results</div>
       {data?.items.map((elm:any, i:number) => {
+        let updatedAt = new Date(elm.updated_at).toDateString();
         return (
           <div key={i} className={styles.item}>
             <h3 className={styles.item__name}>{elm.full_name}</h3>
@@ -27,7 +28,7 @@ export default function SearchResult({data}: Props) {
                 <p className={styles.item__forkText}>{elm.forks_count || 0}</p>
               </div>
               {elm.language  && <div className={styles.item__language}>{elm.language}</div>}
-              {elm.updatedAt && <div className={styles.item__updated}>`Updated: {elm.updatedAt}`</div>}
+              {updatedAt && <div className={styles.item__updated}>Updated: {updatedAt}</div>}
             </div>
           </div>
         )
