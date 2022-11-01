@@ -54,7 +54,7 @@ export default function Search() {
     if (term) {
       fetchData({ term: term });
     }
-  }, [page, fetchData]);
+  }, [page, fetchData, term]);
 
   return (
     <>
