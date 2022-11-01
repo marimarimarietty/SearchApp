@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   min-width: var.$contentWidthPc;
-  padding: 40px 40px 0;
+  padding: 40px 40px;
 
   @include mi.mq {
     min-width: auto;
@@ -40,6 +40,7 @@
     font-size: 18px;
     font-weight: bold;
     margin: 0 0 10px;
+    overflow-wrap: break-word;
   }
 
   &__desc {
