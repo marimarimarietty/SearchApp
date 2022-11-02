@@ -17,7 +17,9 @@ export default function SearchResult({data}: Props) {
         let updatedAt = new Date(elm.updated_at).toDateString();
         return (
           <div key={i} className={styles.item}>
-            <h3 className={styles.item__name}>{elm.full_name}</h3>
+            <a href={elm.html_url} target="_blank" rel="noreferrer">
+              <h3 className={styles.item__name}>{elm.full_name}</h3>
+            </a>
             {elm.description && <p className={styles.item__desc}>{elm.description}</p>}
             <div className={styles.item__detail}>
               <div className={styles.item__star}>
